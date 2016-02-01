@@ -52,11 +52,6 @@ extern char *errorMessage (RC error);
 	exit(1);							\
       }									\
   } while(0);
-<<<<<<< HEAD
 
-=======
-/*Dhruvit*/
-/*Monika*/
-/*Anirudh*/
 
 #endif
