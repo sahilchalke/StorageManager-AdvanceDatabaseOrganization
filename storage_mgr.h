@@ -2,6 +2,7 @@
 #define STORAGE_MGR_H
 
 #include "dberror.h"
+#define TESTFILE "test.bin"
 
 /************************************************************
  *                    handle data structures                *
@@ -39,5 +40,7 @@ extern RC writeBlock (int pageNum, SM_FileHandle *fHandle, SM_PageHandle memPage
 extern RC writeCurrentBlock (SM_FileHandle *fHandle, SM_PageHandle memPage);
 extern RC appendEmptyBlock (SM_FileHandle *fHandle);
 extern RC ensureCapacity (int numberOfPages, SM_FileHandle *fHandle);
+
+void printFileHandle(SM_FileHandle *fHandle);
 
 #endif
