@@ -66,9 +66,9 @@ void printFileHandle(SM_FileHandle *fHandle){
  ****************************************************************/ 	
 extern void initStorageManager (void){
   
-   char file_Name[10] = TESTFILE;
-   char *filePointer = &file_Name[0];
-   createPageFile(filePointer);
+   //char file_Name[10] = TESTFILE;
+   //char *filePointer = &file_Name[0];
+   //createPageFile(filePointer);
 }
 
 /****************************************************************
@@ -100,6 +100,7 @@ extern RC createPageFile (char *fileName){
 	  return RC_WRITE_FAILED;
   }
   fclose(fp);
+  free(initChar);
   return RC_OK; 
 }
 
@@ -258,8 +259,7 @@ extern RC appendEmptyBlock (SM_FileHandle *fHandle)
 	  return RC_WRITE_FAILED;
     }	
 	fHandle->totalNumPages=fHandle->totalNumPages + 1;
-	//fHandle->curPagePos=fHandle->curPagePos+1;
-
+	free(initChar);
 	return RC_OK;
   }
   
