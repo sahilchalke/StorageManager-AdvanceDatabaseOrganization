@@ -1,5 +1,7 @@
 CC=gcc
 
+default: assign1_1
+
 dberror.o: dberror.c
 	$(CC) -o dberror.o -c dberror.c
 
