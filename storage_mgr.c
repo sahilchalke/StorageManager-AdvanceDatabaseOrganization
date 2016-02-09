@@ -203,7 +203,7 @@ extern RC readBlock (int pageNum, SM_FileHandle *fHandle, SM_PageHandle memPage)
 	  return RC_READ_NON_EXISTING_PAGE;
   }
   
-  int offset = pageNum*PAGE_SIZE - PAGE_SIZE;
+  int offset = pageNum*PAGE_SIZE;
   fseek(fHandle->mgmtInfo, offset, SEEK_SET);
   
   error = fread(memPage, PAGE_SIZE, 1, fHandle->mgmtInfo);
