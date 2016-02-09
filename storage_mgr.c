@@ -326,7 +326,6 @@ extern RC appendEmptyBlock (SM_FileHandle *fHandle)
 		return RC_WRITE_FAILED;
 	}
 	fHandle->curPagePos = pageNum + 1;
-	fHandle->totalNumPages=fHandle->totalNumPages + 1; 
 	return RC_OK;
 }
 
@@ -367,11 +366,11 @@ extern RC readFirstBlock (SM_FileHandle *fHandle, SM_PageHandle memPage){
 		return RC_FILE_HANDLE_NOT_INIT;
 	}
    fseek(fHandle->mgmtInfo , 0 , SEEK_SET);
-   error = fread(memPage, 1, PAGE_SIZE, fHandle->mgmtInfo);
-   if(error != PAGE_SIZE){
+   error = fread(memPage, PAGE_SIZE, 1, fHandle->mgmtInfo);
+   if(error != 1){
 	   return RC_READ_ERROR;
    }
-   fHandle->curPagePos = (ftell(fHandle->mgmtInfo)/PAGE_SIZE);
+   fHandle->curPagePos = (ftell(fHandle->mgmtInfo)/PAGE_SIZE) - 1;
    return RC_OK;
 
 }
@@ -395,11 +394,11 @@ extern RC readLastBlock (SM_FileHandle *fHandle, SM_PageHandle memPage){
 		return RC_FILE_HANDLE_NOT_INIT;
 	}
 	fseek(fHandle->mgmtInfo , -PAGE_SIZE , SEEK_END);
-	error = fread(memPage, 1, PAGE_SIZE, fHandle->mgmtInfo);
-	if(error != PAGE_SIZE){
+	error = fread(memPage, PAGE_SIZE, 1, fHandle->mgmtInfo);
+	if(error != 1){
 	   return RC_READ_ERROR;
     }
-	fHandle->curPagePos = (ftell(fHandle->mgmtInfo)/PAGE_SIZE);
+	fHandle->curPagePos = fHandle->totalNumPages - 1;
 	return RC_OK;
 }
 
@@ -423,11 +422,11 @@ extern RC readPreviousBlock (SM_FileHandle *fHandle, SM_PageHandle memPage)
 
 	fseek(fHandle->mgmtInfo , -PAGE_SIZE , SEEK_CUR);
 	
-	error = fread(memPage, 1, PAGE_SIZE, fHandle->mgmtInfo);
-	if(error != PAGE_SIZE){
+	error = fread(memPage, PAGE_SIZE, 1, fHandle->mgmtInfo);
+	if(error != 1){
 	   return RC_READ_ERROR;
     }	
-	fHandle->curPagePos = (ftell(fHandle->mgmtInfo)/PAGE_SIZE);
+	fHandle->curPagePos = fHandle->curPagePos - 1;
 	return RC_OK;
 }
 
@@ -452,11 +451,11 @@ extern RC readCurrentBlock (SM_FileHandle *fHandle, SM_PageHandle memPage)
 	
 	fseek(fHandle->mgmtInfo , (fHandle->curPagePos)*PAGE_SIZE , SEEK_SET);
 	
-    error = fread(memPage, 1, PAGE_SIZE, fHandle->mgmtInfo);
-    if(error != PAGE_SIZE){
+    error = fread(memPage, PAGE_SIZE, 1, fHandle->mgmtInfo);
+    if(error != 1){
 	   return RC_READ_ERROR;
     }
-	fHandle->curPagePos = (ftell(fHandle->mgmtInfo)/PAGE_SIZE);
+	fHandle->curPagePos = fHandle->curPagePos;
     return RC_OK;
 }
 
@@ -481,10 +480,10 @@ extern RC readNextBlock (SM_FileHandle *fHandle, SM_PageHandle memPage)
 	
     fseek(fHandle->mgmtInfo , (fHandle->curPagePos + 1) * PAGE_SIZE , SEEK_SET);
 
-    error = fread(memPage, 1, PAGE_SIZE, fHandle->mgmtInfo);
-    if(error != PAGE_SIZE){
+    error = fread(memPage, PAGE_SIZE, 1, fHandle->mgmtInfo);
+    if(error != 1){
 	   return RC_READ_ERROR;
     }	
-	fHandle->curPagePos = (ftell(fHandle->mgmtInfo)/PAGE_SIZE);
+	fHandle->curPagePos = fHandle->curPagePos + 1;
     return RC_OK;
 }
