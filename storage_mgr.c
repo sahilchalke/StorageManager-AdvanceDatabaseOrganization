@@ -325,7 +325,7 @@ extern RC appendEmptyBlock (SM_FileHandle *fHandle)
 	if(error != PAGE_SIZE){
 		return RC_WRITE_FAILED;
 	}
-	fHandle->curPagePos = pageNum;
+	fHandle->curPagePos = pageNum + 1;
 	fHandle->totalNumPages=fHandle->totalNumPages + 1; 
 	return RC_OK;
 }
@@ -479,7 +479,7 @@ extern RC readNextBlock (SM_FileHandle *fHandle, SM_PageHandle memPage)
 		return RC_FILE_HANDLE_NOT_INIT;
 
 	
-    fseek(fHandle->mgmtInfo , (fHandle->curPagePos * PAGE_SIZE) + 1 , SEEK_SET);
+    fseek(fHandle->mgmtInfo , (fHandle->curPagePos + 1) * PAGE_SIZE , SEEK_SET);
 
     error = fread(memPage, 1, PAGE_SIZE, fHandle->mgmtInfo);
     if(error != PAGE_SIZE){

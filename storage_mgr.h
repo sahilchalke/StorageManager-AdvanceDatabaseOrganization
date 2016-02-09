@@ -2,7 +2,6 @@
 #define STORAGE_MGR_H
 
 #include "dberror.h"
-#define TESTFILE "test.bin"
 
 /************************************************************
  *                    handle data structures                *
