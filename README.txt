@@ -14,8 +14,8 @@ Storage Manager module is responsible for reading a block from file on the disk 
 I. Contents
 -----------
 All source files (.c, .h)
-this README file
-makefile
+README file
+Makefile
 
 II. File List
 -------------
@@ -24,17 +24,21 @@ db_error.c		Implementation of utility functions
 storage_mgr.h		Storage manager header
 storage_mgr.c		Core Storage manager functionality implementation
 test_assign1_1.c	Test file
+my_test_assign1.c       Additional test file
+test_helper.h           Headers and definitions for test files
 
 III. Build and Run
 ------------------
 A. Build
 	$ make clean
 	$ make
+	$ make my_assign1
 
-This will clean build the storage manager and create an executable named assign1
+This will clean build the storage manager and create an executable named assign1(default)
 
 B. Run
-	$ ./assign1
+	$ ./assign1  (default)
+	$ ./my_assign1 (additional test cases)
 
 
 IV. Design and Implementation
@@ -70,7 +74,7 @@ A. Data Structures
 B. Methods
 
 * initStorageManager
-	Initializes the storage manager. Currently this routine displays the ready message. Additional tasks needed during the start of storage 	manager can be added in this routine.
+	Initializes the storage manager. Additional tasks needed during the start of storage manager can be added in this routine.
 
 * createPageFile  -Dhruvit Modi (dmodi2@hawk.iit.edu)
 	Creates a new page file by the specified file name. If the file already exists then its contents will be discared and it will be treated
@@ -176,3 +180,4 @@ B. Methods
   
  ----------------------------------------------------------------------------------------------------------------------------------------------------------------
  README : Monika Priyadarshini (mpriyad1@hawk.iit.edu)
+ MAKEFILE: Sahil Chalke (schalke@hawk.iit.edu)
