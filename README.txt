@@ -30,8 +30,11 @@ test_helper.h           Headers and definitions for test files
 III. Build and Run
 ------------------
 A. Build
+      1. For default build
 	$ make clean
 	$ make
+      2. For additional test cases
+        $ make clean
 	$ make my_assign1
 
 This will clean build the storage manager and create an executable named assign1(default)
