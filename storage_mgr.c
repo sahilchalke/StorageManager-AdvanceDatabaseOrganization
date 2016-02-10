@@ -55,8 +55,7 @@ void printFileHandle(SM_FileHandle *fHandle){
 /****************************************************************
  * Function Name: initStorageManager
  * 
- * Description: Initializez the storage manager by calling a method
- *              to create a page file.
+ * Description: Can be used to initializes the storage manager.
  * 
  * Parameter: void
  * 

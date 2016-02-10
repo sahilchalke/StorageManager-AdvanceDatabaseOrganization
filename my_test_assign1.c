@@ -27,7 +27,18 @@ main (void)
   return 0;
 }
 
-/* Try to create, open, and close a page file */
+/****************************************************************
+ * Function Name: myTestAssign1
+ *  
+ * Description: Additional tests for Storage Manager.
+ * 
+ * Parameter: void
+ * 
+ * Return: void
+ * 
+ * Author: Dhruvit Modi (dmodi2@hawk.iit.edu)
+ *         Monika Priyadarshani (mpriyad1@hawk.iit.edu)
+ ****************************************************************/
 void
 myTestAssign1(void)
 {
